@@ -1,0 +1,37 @@
+{
+  "name": "note-typescript-template-backend",
+  "private": true,
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "engines": {
+    "node": "20"
+  },
+  "scripts": {
+    "dev": "firebase emulators:start --only functions",
+    "build": "tsc",
+    "start": "npm run build && firebase functions:shell",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "verify": "turbo run build typecheck lint",
+    "deploy": "npm run build && firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "terraform:synth": "cd terraform && pnpm synth",
+    "terraform:deploy": "cd terraform && pnpm deploy",
+    "terraform:destroy": "cd terraform && pnpm destroy",
+    "terraform:diff": "cd terraform && pnpm diff"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^5.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.12",
+    "@types/node": "^25.0.10",
+    "firebase-functions-test": "^3.1.0",
+    "tsx": "^4.21.0",
+    "turbo": "^2.7.6",
+    "typescript": "~5.9.3"
+  },
+  "packageManager": "pnpm@10.11.0"
+}
